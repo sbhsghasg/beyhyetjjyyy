@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özel Mesaj</title>
+    <style>
+        body {
+            background: #ffb6c1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive;
+            transition: all 0.5s;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: #fff0f5;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #ff69b4;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px #fff;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #evet {
+            background: #ff69b4;
+            color: white;
+        }
+
+        #hayır {
+            background: #d3d3d3;
+            color: #666;
+            position: relative;
+        }
+
+        #hayır:hover {
+            transform: translate(calc(-50% + ${Math.random() * 100}px), calc(-50% + ${Math.random() * 100}px);
+        }
+
+        .kalp {
+            position: fixed;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: uç 3s linear;
+        }
+
+        @keyframes uç {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Beni affedermisin Ebrar? ❤️</h1>
+        <div class="buttons">
+            <button id="hayır">Hayır 😒</button>
+            <button id="evet">Evet 😍</button>
+        </div>
+    </div>
+
+    <script>
+        const evet = document.getElementById('evet');
+        const hayır = document.getElementById('hayır');
+        const container = document.querySelector('.container');
+        let clickCount = 0;
+
+        // Hayır butonu hareketi
+        hayır.addEventListener('mouseover', () => {
+            hayır.style.transform = `translate(
+                ${Math.random() * 100 - 50}px, 
+                ${Math.random() * 100 - 50}px
+            )`;
+            hayır.style.transition = 'all 0.3s';
+        });
+
+        // Evet butonu efekti
+        evet.addEventListener('click', () => {
+            container.innerHTML = `
+                <h1 style="font-size: 3em; color: #ff0066;">
+                    BİLİYORDUMMMMMMMMMMMMM! 😍🎉<br>
+                    <span style="font-size: 0.5em;">Seni seviyorum 💖</span>
+                </h1>
+                <div class="kalpler"></div>
+            `;
+            
+            // Kalp animasyonu
+            setInterval(() => {
+                const kalp = document.createElement('div');
+                kalp.className = 'kalp';
+                kalp.innerHTML = '❤️';
+                kalp.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(kalp);
+                
+                setTimeout(() => kalp.remove(), 3000);
+            }, 300);
+        });
+
+        // Arka plan efekti
+        setInterval(() => {
+            document.body.style.background = `hsl(${Math.random() * 360}, 70%, 90%)`;
+        }, 3000);
+    </script>
+</body>
+</html>
